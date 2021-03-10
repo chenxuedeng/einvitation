@@ -1,6 +1,8 @@
 export default {
   mutations: {
     addAnimation({ curComponent }, animation) {
+      console.log(animation)
+      
       curComponent.animations.push(animation)
     },
 

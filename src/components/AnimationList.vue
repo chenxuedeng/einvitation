@@ -9,16 +9,20 @@
         <el-tag          
           closable
           @close="removeAnimation(Number(index))"
-        >
-          {{ tag.label }}
-        </el-tag>
+        />
          <!-- 设置动画延时和时长 -->
          <div class="animation-config">
-            <el-form style="width: 100%" label-width="50px">
+            <el-form
+              style="width: 100%;text-align: left;"
+              label-width="80px"
+              label-position="top"
+              class="animation-config-form"
+              >
               <el-form-item label="时间">
+                {{tag}}
                 <el-slider
                   v-model="tag.animationDuration"
-                  :min="0.1"
+                  :min="1"
                   :max="10"
                   :step="0.1"
                   input-size="mini"
@@ -113,7 +117,6 @@ export default defineComponent({
         animationDelay: 0,
         count: 1,
       }
-      console.log('animate :>> ', animateConfig)
       store.commit('addAnimation', animateConfig)
       state.isShowAnimation = false
     }
@@ -138,6 +141,7 @@ export default defineComponent({
 
 <style lang="scss">
 .animation-list {
+  padding: 15px 0 0 0;
     .div-animation {
         text-align: center;
 
@@ -154,6 +158,9 @@ export default defineComponent({
     }
     .animation-config{
       padding: 0 10px;
+      &-form{
+        padding: 0 15px;
+      }
     }
     .el-scrollbar__view {
         display: flex;
@@ -178,4 +185,9 @@ export default defineComponent({
         }
     }
 }
+</style>
+<style lang="scss" scoped>
+  ::v-deep(.el-form-item__label){
+    color: #bec0cc !important;
+  }
 </style>

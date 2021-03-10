@@ -22,7 +22,7 @@ const store = createStore({
       // 页面全局数据
       canvasStyleData: { 
         width: 375,
-        height: 670,
+        height: 667,
         scale: 100,
       },
       // 画布组件数据

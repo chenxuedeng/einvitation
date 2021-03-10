@@ -35,7 +35,7 @@
             <el-tab-pane
               label="图层"
               name="element"
-              style="height: 100%;background:#404040">
+              style="height: 100%;background:#404040;">
                 <ElementList v-if="curComponent" />
                 <p v-else class="placeholder">请选择组件</p>
             </el-tab-pane>
@@ -118,6 +118,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .home {
   height: 100vh;
+  min-width: 1200px;
   background: #212226;
   main {
     height: calc(100% - 64px);
@@ -142,10 +143,10 @@ export default defineComponent({
         width: 340px;
         height: 100%;
         background: #404040;
-        ::v-deep .el-tabs__item.is-active{
+        ::v-deep(.el-tabs__item.is-active){
           color: #fff;
         } 
-        ::v-deep .el-tabs__item{
+        ::v-deep(.el-tabs__item){
           color: #a2a2a2;
         }
       }
@@ -186,32 +187,35 @@ export default defineComponent({
 }
 </style>
 <style lang="scss" scoped>
-  ::v-deep .el-tabs__nav-scroll{
+  ::v-deep(.el-tabs__nav-scroll){
     padding-left: 0;
   }
-  ::v-deep .el-tabs--border-card{
+  ::v-deep(.el-tabs--border-card){
     background: none;
   }
-  ::v-deep el-tabs__header is-top{
+  ::v-deep(el-tabs__header is-top){
     background: none;
   }
-  ::v-deep .el-tabs--border-card>.el-tabs__header{
+  ::v-deep(.el-tabs--border-card>.el-tabs__header){
     background: #333;
     border-bottom: none;
   }
-  ::v-deep .el-tabs--border-card{
+  ::v-deep(.el-tabs--border-card){
     border: none;
     box-shadow: none;
   }
-  ::v-deep .el-tabs--border-card>.el-tabs__header .el-tabs__item.is-active{
+  ::v-deep(.el-tabs--border-card>.el-tabs__header .el-tabs__item.is-active){
     color: #fff;
     background: #404040;
     border-color: #333;
     border-bottom-color: #404040;
   }
-  ::v-deep .el-tabs__item{
+  ::v-deep(.el-tabs__item){
     &:hover{
       color: #fff !important;
     }
+  }
+  ::v-deep(.el-tabs--border-card>.el-tabs__content){
+    padding: 0 0 15px;
   }
 </style>

@@ -98,4 +98,7 @@ export default defineComponent({
     padding-top: 0;
     height: 100%;
 }
+::v-deep(.el-form-item__label){
+  color: #bec0cc !important;
+}
 </style>

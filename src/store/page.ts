@@ -6,6 +6,8 @@ interface State {
   page: Array<object>
   currentPageIndex: number
 }
+import { ElMessage } from 'element-plus'
+import { swap } from '/@/utils/utils'
 export default { 
   state: {
     page: [
@@ -39,8 +41,19 @@ export default {
       state.page.splice(i, 0, pageData)
     },
     setCurrentPageIndex(state:State, index: number){      
-      state.currentPageIndex = index
-      
+      state.currentPageIndex = index      
+    },
+    upPage(state:State, index:number){
+      if (index === 0) {
+        return
+      }
+      swap(state.page, index, index-1)
+    },
+    downPage(state:State, index:number){
+      if (index >= state.page.length - 1) {
+        return
+      }
+      swap(state.page, index, index+1)
     },
   },
 }

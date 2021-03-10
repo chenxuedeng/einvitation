@@ -18,8 +18,8 @@ const list = [
     version: 'v1',
     name: 'VText',
     label: '文字',
-    propValue: '双击编辑文字',
     icon: 'wenben',
+    propValue: '文字',
     style: {
       width: 200,
       height: 22,
@@ -28,7 +28,7 @@ const list = [
       lineHeight: 1.5,
       letterSpacing: 0,
       textAlign: 'left',
-      color: '',
+      color: '#000',
     },
   },
   {

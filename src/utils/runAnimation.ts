@@ -1,3 +1,5 @@
+import { watch } from "vue"
+
 interface CurComponent {
   animations?: Array<string>
   animationConfig?: AnimationConfig
@@ -6,27 +8,28 @@ interface AnimationConfig {
   animationDuration: number
   animationDelay: number
 }
-
-export default async function runAnimation($el:HTMLElement, curComponent: CurComponent) {  
+export default function runAnimation($el:HTMLElement, curComponent: CurComponent) {  
+  console.log($el)
   const { animations = [] } = curComponent
-  const play = (animation:any) => new Promise<void>(resolve => {
-    $el.classList.add(animation.value, 'animated')
-    // 设置 持续时间和延迟时间
-    $el.style.animationDuration = animation?.animationDuration + 's'
-    $el.style.animationDelay = animation?.animationDelay + 's'
-        
-    const removeAnimation = () => {
-      // $el.removeEventListener('animationend', removeAnimation)
-      // $el.removeEventListener('animationcancel', removeAnimation)
-      $el.classList.remove(animation.value, 'animated')
-      resolve()
+  // 记录动画执行到第几个 0 表示第一个
+  let countFlag = 0
+  const len = animations.length
+  const play = (animation:any, index:number) => {
+    if (countFlag >= len ) {
+      $el.style.animation = ''
+      return
     }
-            
-    $el.addEventListener('animationend', removeAnimation)
-    $el.addEventListener('animationcancel', removeAnimation)
-  })
-
-  for (let i = 0, len = animations.length; i < len; i++) {
-    await play(animations[i])
+    const animationStyle = `${animation.animationDelay ?  animation.animationDelay + 's' : ' '} 
+                            ${animation.value} ${animation.animationDuration}s ease-in-out  
+                            ${animation.count === -1 ? 'infinite' : animation.count} ${index === len-1 ? 'forwards' : 'both'}`
+    $el.style.animation = animationStyle
+    
+    countFlag++
+    $el.addEventListener('animationend', ()=>{
+      play(animations[countFlag], countFlag)      
+    })
   }
+
+  play(animations[countFlag], countFlag)
+  
 }
