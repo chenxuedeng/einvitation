@@ -34,7 +34,8 @@ export default defineComponent({
       events : mixins.methods,
     })
     onMounted(()=>{
-      const $el: HTMLEmbedElement | unknown = state.currentInstance?.refs.el
+      const el = state.currentInstance?.refs.el
+      const $el: HTMLEmbedElement | unknown = el.children[0] ? el.children[0] : el
       runAnimation(($el as HTMLEmbedElement), props.config)
     })
 

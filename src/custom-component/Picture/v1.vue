@@ -1,5 +1,5 @@
 <template>
-  <div style="overflow: hidden">
+  <div>
     <img :src="propValue">
   </div>
 </template>

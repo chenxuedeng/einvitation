@@ -6,7 +6,8 @@
     @click="selectCurComponent"
     @mousedown="handleMouseDownOnShape"
   >
-    <span
+    <div class="shape-wrap-animation" style="">
+      <span
       v-show="isActive()"
       class="iconfont icon-xiangyouxuanzhuan"
       @mousedown="handleRotate"
@@ -20,6 +21,7 @@
       @mousedown="handleMouseDownOnPoint(item, $event)"
     ></div>
     <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -36,7 +38,8 @@ import {
   reactive,
   toRefs,
   getCurrentInstance,
-  nextTick
+  nextTick,
+ref
 } from 'vue'
 
 export default defineComponent({
@@ -95,13 +98,13 @@ export default defineComponent({
 
     onMounted(() => {
       // 用于 Group 组件
-      const $el = state.currentInstance?.refs.shapEle
+      const $el = ref(state.currentInstance?.refs.shapEle) 
       if (state.curComponent) {
         state.cursors = getCursor() // 根据旋转角度获取光标位置
       }
       eventBus.on('runAnimation', () => {
         if (props.element === state.curComponent) {
-          runAnimation(<HTMLElement>$el, state.curComponent)
+          runAnimation(<HTMLElement>$el.value, state.curComponent)
         }
       })
     })
@@ -404,7 +407,7 @@ export default defineComponent({
     }
   }
 .active {
-  outline: 1px solid #70c0ff;
+  border: 1px dashed rgba($color: #59c7f9, $alpha: .5);
   user-select: none;
 }
 .shape-point {
@@ -436,5 +439,9 @@ export default defineComponent({
   position: absolute;
   top: 0;
   right: 0;
+}
+.shape-wrap-animation{
+  width: 100%;
+  height: 100%;
 }
 </style>

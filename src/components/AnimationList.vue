@@ -9,7 +9,9 @@
         <el-tag          
           closable
           @close="removeAnimation(Number(index))"
-        />
+        >
+          {{tag.label}}
+        </el-tag>
          <!-- 设置动画延时和时长 -->
          <div class="animation-config">
             <el-form
@@ -19,7 +21,6 @@
               class="animation-config-form"
               >
               <el-form-item label="时间">
-                {{tag}}
                 <el-slider
                   v-model="tag.animationDuration"
                   :min="1"
@@ -55,12 +56,14 @@
 
     <!-- 选择动画 -->
     <Modal v-model:show="isShowAnimation">
-      <el-tabs v-model="animationActiveName">
+      <el-tabs v-model="animationActiveName" type="card">
         <el-tab-pane
           v-for="item in animationClassData"
           :key="item.label"
           :label="item.label"
-          :name="item.label">
+          :name="item.label"
+          style="padding: 0 0 0 15px !important;"
+        >
           <el-scrollbar class="animate-container">
             <div
               v-for="(animate, index) in item.children"
@@ -139,7 +142,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped="">
 .animation-list {
   padding: 15px 0 0 0;
     .div-animation {
@@ -162,8 +165,9 @@ export default defineComponent({
         padding: 0 15px;
       }
     }
-    .el-scrollbar__view {
+    ::v-deep(.el-scrollbar__view) {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         flex-wrap: wrap;
         padding-left: 10px;
@@ -171,23 +175,33 @@ export default defineComponent({
         .animate > div {
             width: 100px;
             height: 60px;
-            background: #f5f8fb;
+            background: #0c0b0b;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 12px;
             margin-bottom: 10px;
             font-size: 12px;
-            color: #333;
+            color: #fff;
             border-radius: 3px;
             user-select: none;
             cursor: pointer;
         }
+    }
+    ::v-deep(el-tabs__nav-scroll){
+      padding-left: 15px !important ;
     }
 }
 </style>
 <style lang="scss" scoped>
   ::v-deep(.el-form-item__label){
     color: #bec0cc !important;
+  }
+  ::v-deep(el-tabs__item is-top is-active){
+    color: #bec0cc !important;
+  }
+
+  ::v-deep(el-tabs__nav-scroll){
+    background: #404040;
   }
 </style>

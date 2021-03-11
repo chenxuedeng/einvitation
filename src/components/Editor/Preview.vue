@@ -78,7 +78,6 @@ export default defineComponent({
             background: #fff;
             position: relative;
             margin: auto;
-            overflow: hidden;
         }
     }
 

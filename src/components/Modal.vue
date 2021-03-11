@@ -48,7 +48,7 @@ export default defineComponent({
 
     .modal {
         width: 400px;
-        background: #fff;
+        background: #404040;
         height: 100%;
     }
 }
