@@ -407,7 +407,7 @@ export default defineComponent({
     }
   }
 .active {
-  border: 1px dashed rgba($color: #59c7f9, $alpha: .5);
+  // border: 1px dashed rgba($color: #59c7f9, $alpha: .5);
   user-select: none;
 }
 .shape-point {

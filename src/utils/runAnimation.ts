@@ -27,7 +27,7 @@ export default function runAnimation($el:HTMLElement, curComponent: CurComponent
     
       countFlag++
       $ele.addEventListener('animationend', ()=>{    
-        $ele.style.animation = ''
+        // $ele.style.animation = ''
         play(animations[countFlag], countFlag)      
       })
     }

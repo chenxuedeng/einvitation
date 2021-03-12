@@ -1,4 +1,4 @@
-import { createStore } from 'vuex'
+import { createStore, createLogger  } from 'vuex'
 import compose from './compose'
 import animation from './animation'
 import contextmenu from './contextmenu'

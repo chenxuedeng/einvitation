@@ -1,4 +1,4 @@
-export function deepCopy(target) {
+export function deepCopy(target:unknown) {
   if (typeof target == 'object') {
     const result = Array.isArray(target)? [] : {}
     for (const key in target) {
@@ -15,12 +15,12 @@ export function deepCopy(target) {
   return target
 }
 
-export function swap(arr, i, j) {
+export function swap(arr: object[], i:number, j:number) {
   const temp = arr[i]
   arr[i] = arr[j]
   arr[j] = temp
 }
 
-export function $(selector) {
+export function $(selector: string) {
   return document.querySelector(selector)
 }
